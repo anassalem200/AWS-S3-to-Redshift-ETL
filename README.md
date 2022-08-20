@@ -1,22 +1,24 @@
 # Project: Data Warehouse
 
-### Introduction:
+## Introduction:
 this project is called sparkify,its a music project just as good as spotify. like a music enthusiast like myself,
 this project contains a database of songs. currently in the format of json files.
 
 
-#### Project description:
+## Project Journey
+![Pipeline Lifecycle](Misc/cloud_data_warehouse.png)
 
-in this project, we will take all the data from various locations (log_data, song_data),
+## Project description:
+
+in this project, we will extract from two diffrently strcutred JSON Object data called (log_data, song_data),
 log data will contains the logs of songs, such as name, username, id, etc..,
 song_data will be about the song, song name, duration, artist, etc..,
 we will pull all the data from these locations to an ETL pipline, that are hosted on S3 bucket,
-will go the a Amazon Redshift to be processed to be staging tables, and will be stored on Amazon RDS postgresDB tables (the above database structre will be on RDS).
-all this magic is basiclly to transform the data from S3, to Redshift staging tables, all the way to be stored in Postgres DB.
+will go the a Amazon Redshift to be processed on staging tables, and stored there.
 
 
 
-### database structure:
+## database structure:
 
 #### Fact Table
 
@@ -35,22 +37,22 @@ all this magic is basiclly to transform the data from S3, to Redshift staging ta
     start_time, hour, day, week, month, year, weekday
     
 
-#### Project structure:
+## Project structure:
 this porject contains these essinatl files to work:
-1. dwh.cfg:
+1. **dwh.cfg**:
     this file will contain all the configurations for AWS such as AWS keys, cluster specs, data warehouse info, IAM info, and S3 info. 
-2. etl.py
+2. **etl.py**
     this file will make all the magic happens, it will take all the queries from the file "sql_queries.py" as an input.
     will load the staging tables, and insert them to the  Amazon RDS, for more info check the docstring in "etl.py"
-3. create_tables.py
+3. **create_tables.py**
     this file is very simple, will take "sql_queries.py" as an input, will connect to DB, drop tables if exists, and then create tables bassed on passed quries.
-4. sql_queries.py
+4. **sql_queries.py**
     this file contains all the work, it will contain the quries, from creation, copying, to insertion, the will be passed as a form of list,
     so other files could use them properly
-5. test.ipynb
+5. **test.ipynb**
     this file is my playground, i will test all the stuff from connections, checking S3 data source, creating clusters, qureying database, and shuttung down services
     
-#### How to run:
+## How to run:
 1. fill the key, and secret key in "dwh.cfg"
 2. run "create_tables.py"
 2. run "etl.py"
