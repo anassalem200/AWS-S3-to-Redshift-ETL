@@ -1,4 +1,4 @@
-# Project: Data Warehouse
+# Project: Cloud Data Warehouse with AWS
 
 ## Introduction:
 this project is called sparkify,its a music project just as good as spotify. like a music enthusiast like myself,
